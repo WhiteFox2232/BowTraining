@@ -26,6 +26,7 @@ public final class Main extends JavaPlugin {
         pm.registerEvents(new ProjectileInteraction(), this);
         pm.registerEvents(new JoinQuit(), this);
         pm.registerEvents(new PlayerInteract(), this);
+        pm.registerEvents(new MoveEvent(), this);
     }
 
     @Override

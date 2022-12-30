@@ -5,7 +5,6 @@ import fr.whitefox.bowtraining.Main;
 import fr.whitefox.bowtraining.utilities.Utilities;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,14 +21,13 @@ public class JoinQuit implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, Integer.MAX_VALUE, 1, false, false));
-        Location spawn = new Location(Bukkit.getWorld("world"), 0.5f, 0, 0.5f, 90, 0);
 
         if (main.isState(GState.PLAYING)) {
             player.getInventory().clear();
             player.sendTitle("§cLa partie a déjà commencée !", null, 0, 60, 0);
             Utilities.playErrorSound(player);
             player.setGameMode(GameMode.SPECTATOR);
-            player.teleport(spawn);
+            Utilities.playerGoToSpawn(player);
             if (player.hasPermission("BT.admin")) {
                 Utilities.setAdminInventory(player);
             }
@@ -42,7 +40,7 @@ public class JoinQuit implements Listener {
         } else {
             event.setJoinMessage(null);
         }
-        player.teleport(spawn);
+        Utilities.playErrorSound(player);
         player.getInventory().clear();
         player.setFoodLevel(20);
         player.setHealth(20);

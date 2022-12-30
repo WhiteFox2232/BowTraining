@@ -38,7 +38,7 @@ public class StartGame {
                 // If timer is finished, start game
                 if (timer == 0) {
                     Utilities.spawnArmorStand();
-                    Utilities.goToSpawn();
+                    Utilities.AllPlayersGoToSpawn();
                     for (Player players : Bukkit.getOnlinePlayers()) {
                         players.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§c§lTirez sur Bob !"));
                         players.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 2.0f, 1.0f);

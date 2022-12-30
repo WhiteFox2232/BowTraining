@@ -22,11 +22,11 @@ import static fr.whitefox.bowtraining.tasks.StartGame.ArmorStandUUID;
 
 public class Utilities {
 
+    private static final Main main = Main.getInstance();
     public static ArrayList<Location> coordinates = new ArrayList<>();
     public static Location spawnLocation = new Location(Bukkit.getWorld("world"), 0.5f, 0, 0.5f, 90, 0);
     public static HashMap<Player, Integer> targetsReached = new HashMap<>();
     public static HashMap<Player, Integer> arrowsUsed = new HashMap<>();
-    private static final Main main = Main.getInstance();
 
     public static void initCoordinates() {
         coordinates.add(new Location(Bukkit.getWorld("world"), -22.5f, 5, 9.5f, -90, 0));
@@ -47,10 +47,14 @@ public class Utilities {
         }
     }
 
-    public static void goToSpawn() {
+    public static void AllPlayersGoToSpawn() {
         for (Player players : Bukkit.getOnlinePlayers()) {
             players.teleport(spawnLocation);
         }
+    }
+
+    public static void playerGoToSpawn(Player player) {
+        player.teleport(spawnLocation);
     }
 
     public static void setGameInventory(Player player) {
@@ -139,5 +143,6 @@ public class Utilities {
         equipment.setHelmet(helmet);
         armorStand.setCustomName("§a§lBob");
         armorStand.setInvisible(true);
+        armorStand.setGravity(false);
     }
 }
