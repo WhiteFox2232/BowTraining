@@ -23,7 +23,7 @@ public class PlayerInteract implements Listener {
         if (!(player.hasPermission("BT.admin"))) return;
         if (item == null) return;
 
-        // Green wool item : Start the plugins
+        // Green wool item : Start the game
         if (item.getType() == Material.LIME_WOOL) {
             // On lance la partie
             if (main.isState(GState.WAITING)) {
@@ -34,7 +34,7 @@ public class PlayerInteract implements Listener {
             }
         }
 
-        // Red wool item : Restart the plugin
+        // Red wool item : Restart the game
         if (item.getType() == Material.RED_WOOL) {
             // On arrête la partie
             if (main.isState(GState.PLAYING)) {

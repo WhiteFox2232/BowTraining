@@ -39,7 +39,7 @@ public class EntityDamage implements Listener {
         if (arrow.getShooter() instanceof Player) {
             Player player = (Player) arrow.getShooter();
             Location entityLocation = event.getEntity().getLocation();
-            event.getEntity().getWorld().spawnParticle(Particle.LAVA, entityLocation.getX(), event.getEntity().getLocation().getY(), event.getEntity().getLocation().getZ(), 10);
+            event.getEntity().getWorld().spawnParticle(Particle.LAVA, entityLocation.getX(), event.getEntity().getLocation().getY() + 1, event.getEntity().getLocation().getZ(), 10);
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.5f, 1.0f);
             event.getEntity().teleport(Utilities.coordinates.get(ThreadLocalRandom.current().nextInt(0, Utilities.coordinates.size())));
 
