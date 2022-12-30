@@ -38,6 +38,10 @@ public class InventoryInteraction implements Listener {
                         player.openInventory(Menus.GameDayTimeMenu());
                         break;
 
+                    case REDSTONE_TORCH:
+                        player.openInventory(Menus.AutoStartMenu());
+                        break;
+
                     case BARRIER:
                         player.closeInventory();
                         break;
@@ -99,6 +103,27 @@ public class InventoryInteraction implements Listener {
                     case ENDER_PEARL:
                         player.sendMessage("§3[§bBowTraining§3] §aHeure du jeu définie sur §c§lNuit");
                         Bukkit.getWorld("world").setTime(18000);
+                        break;
+
+                    case BARRIER:
+                        player.openInventory(Menus.ConfigMenu());
+                        break;
+
+                    default:
+                        break;
+                }
+
+            // Auto-start configuration Menu
+            case "§6§lConfiguration ➤ §c§lAutoStart":
+                switch (current.getType()) {
+                    case LIME_STAINED_GLASS_PANE:
+                        player.sendMessage("§3[§bBowTraining§3] §aL'auto-start a été §c§lactivé");
+                        config.set("auto-start", true);
+                        break;
+
+                    case RED_STAINED_GLASS_PANE:
+                        player.sendMessage("§3[§bBowTraining§3] §aL'auto-start a été §c§ldésactivé");
+                        config.set("auto-start", false);
                         break;
 
                     case BARRIER:

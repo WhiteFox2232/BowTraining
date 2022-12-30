@@ -2,6 +2,7 @@ package fr.whitefox.bowtraining.events;
 
 import fr.whitefox.bowtraining.GState;
 import fr.whitefox.bowtraining.Main;
+import fr.whitefox.bowtraining.tasks.StartGame;
 import fr.whitefox.bowtraining.utilities.Utilities;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -36,6 +37,10 @@ public class JoinQuit implements Listener {
         }
 
         if (main.isState(GState.WAITING)) {
+            if(main.getConfig().getBoolean("auto-start") && Bukkit.getOnlinePlayers().size() == Bukkit.getMaxPlayers()){
+                StartGame.run(player);
+            }
+
             event.setJoinMessage("§3[§bBowTraining§3] §6" + player.getName() + " §r§aa rejoint la partie §r[§e" + Bukkit.getOnlinePlayers().size() + "§r/§e" + Bukkit.getMaxPlayers() + "§r] ");
         } else {
             event.setJoinMessage(null);

@@ -17,8 +17,10 @@ public class Menus {
         Inventory inv = Bukkit.createInventory(null, 27, "§6§lMenu de configuration");
         ItemStack clock = getItemStack(Material.CLOCK, "§6§lConfigurer le temps de jeu", 1);
         ItemStack daylight = getItemStack(Material.DAYLIGHT_DETECTOR, "§6§lChanger l'heure de la partie", 1);
-        inv.setItem(12, clock);
-        inv.setItem(14, daylight);
+        ItemStack autoStart = getItemStack(Material.REDSTONE_TORCH, "§6§lLancer automatiquement la partie", 1);
+        inv.setItem(11, clock);
+        inv.setItem(13, daylight);
+        inv.setItem(15, autoStart);
 
         setBackButton(inv, "§c§lFermer");
         setBackground(inv, Material.WHITE_STAINED_GLASS_PANE, " ");
@@ -33,6 +35,20 @@ public class Menus {
         ItemStack night = getItemStack(Material.ENDER_PEARL, "§a§lNuit", 1);
         inv.setItem(12, day);
         inv.setItem(14, night);
+
+        setBackButton(inv, "§c§lRetourner au Menu Principal");
+        setBackground(inv, Material.WHITE_STAINED_GLASS_PANE, " ");
+
+        return inv;
+    }
+
+    // Auto-Start config menu
+    public static Inventory AutoStartMenu() {
+        Inventory inv = Bukkit.createInventory(null, 27, "§6§lConfiguration ➤ §c§lAutoStart");
+        ItemStack yes = getItemStack(Material.LIME_STAINED_GLASS_PANE, "§a§lActiver", 1);
+        ItemStack no = getItemStack(Material.RED_STAINED_GLASS_PANE, "§a§lDésactiver", 1);
+        inv.setItem(12, yes);
+        inv.setItem(14, no);
 
         setBackButton(inv, "§c§lRetourner au Menu Principal");
         setBackground(inv, Material.WHITE_STAINED_GLASS_PANE, " ");
