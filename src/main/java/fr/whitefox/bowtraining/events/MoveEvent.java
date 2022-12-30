@@ -10,6 +10,7 @@ public class MoveEvent implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         if (event.getTo().getY() < -20) {
+            Utilities.playerGoToSpawn(event.getPlayer());
             Utilities.playErrorSound(event.getPlayer());
         }
     }
