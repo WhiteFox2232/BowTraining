@@ -1,0 +1,6 @@
+name: BowTraining
+version: '${project.version}'
+main: fr.whitefox.bowtraining.Main
+api-version: 1.19
+authors: [ WhiteFox2232 ]
+website: https://github.com/whitefox2232
