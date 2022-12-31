@@ -3,6 +3,7 @@ package fr.whitefox.bowtraining.events;
 import fr.whitefox.bowtraining.GState;
 import fr.whitefox.bowtraining.Main;
 import fr.whitefox.bowtraining.tasks.StartGame;
+import fr.whitefox.bowtraining.utilities.Inventories;
 import fr.whitefox.bowtraining.utilities.Utilities;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -30,7 +31,7 @@ public class JoinQuit implements Listener {
             player.setGameMode(GameMode.SPECTATOR);
             Utilities.playerGoToSpawn(player);
             if (player.hasPermission("BT.admin")) {
-                Utilities.setAdminInventory(player);
+                Inventories.setAdminInventory(player);
             }
 
             return;
@@ -51,7 +52,7 @@ public class JoinQuit implements Listener {
         player.setHealth(20);
         player.setGameMode(GameMode.ADVENTURE);
         if (player.hasPermission("BT.admin")) {
-            Utilities.setAdminInventory(player);
+            Inventories.setAdminInventory(player);
         }
     }
 
