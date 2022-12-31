@@ -13,13 +13,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.UUID;
-
 public class StartGame {
 
-    public static UUID ArmorStandUUID = null;
-    public static BukkitTask task = null;
     private static final Main main = Main.getInstance();
+    public static BukkitTask task = null;
 
     public static void run(Player player) {
         main.setGameState(GameState.PREPARING);

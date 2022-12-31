@@ -43,6 +43,10 @@ public class MenuInteraction implements Listener {
                         player.openInventory(Menus.AutoStartMenu());
                         break;
 
+                    case TARGET:
+                        player.openInventory(Menus.TargetsConfigMenu());
+                        break;
+
                     case WOODEN_SHOVEL:
                         player.closeInventory();
                         player.getInventory().clear();
@@ -63,7 +67,7 @@ public class MenuInteraction implements Listener {
                     default:
                         break;
                 }
-
+                event.setCancelled(true);
                 break;
 
             // Timer configuration Menu
@@ -101,7 +105,7 @@ public class MenuInteraction implements Listener {
                     default:
                         break;
                 }
-
+                event.setCancelled(true);
                 break;
 
             // Timer configuration Menu
@@ -124,6 +128,46 @@ public class MenuInteraction implements Listener {
                     default:
                         break;
                 }
+                event.setCancelled(true);
+                break;
+
+            // Timer configuration Menu
+            case "§6§lConfiguration ➤ §c§lTargets":
+                switch (current.getType()) {
+                    case TARGET:
+                        switch (current.getAmount()) {
+                            case 1:
+                                player.sendMessage("§3[§bBowTraining§3] §aNombre de cibles définies sur §c§l1");
+                                config.set("targets", 1);
+                                break;
+                            case 2:
+                                player.sendMessage("§3[§bBowTraining§3] §aNombre de cibles définies sur §c§l2");
+                                config.set("targets", 2);
+                                break;
+                            case 3:
+                                player.sendMessage("§3[§bBowTraining§3] §aNombre de cibles définies sur §c§l3");
+                                config.set("targets", 3);
+                                break;
+                            case 4:
+                                player.sendMessage("§3[§bBowTraining§3] §aNombre de cibles définies sur §c§l4");
+                                config.set("targets", 4);
+                                break;
+                            case 5:
+                                player.sendMessage("§3[§bBowTraining§3] §aNombre de cibles définies sur §c§l5");
+                                config.set("targets", 5);
+                                break;
+                        }
+                        break;
+
+                    case BARRIER:
+                        player.openInventory(Menus.ConfigMenu());
+                        break;
+
+                    default:
+                        break;
+                }
+                event.setCancelled(true);
+                break;
 
                 // Auto-start configuration Menu
             case "§6§lConfiguration ➤ §c§lAutoStart":
@@ -145,7 +189,7 @@ public class MenuInteraction implements Listener {
                     default:
                         break;
                 }
-
+                event.setCancelled(true);
                 break;
 
             // End Menu
@@ -153,13 +197,14 @@ public class MenuInteraction implements Listener {
                 if (current.getType().equals(Material.BARRIER)) {
                     player.closeInventory();
                 }
+                event.setCancelled(true);
                 break;
 
             default:
                 break;
         }
 
-        if(!event.getInventory().getType().equals(InventoryType.PLAYER) && event.getWhoClicked().getGameMode() != GameMode.CREATIVE) {
+        if (event.getWhoClicked().getGameMode() != GameMode.CREATIVE) {
             event.setCancelled(true);
         }
     }

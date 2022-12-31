@@ -1,6 +1,5 @@
 package fr.whitefox.bowtraining.events;
 
-import fr.whitefox.bowtraining.tasks.StartGame;
 import fr.whitefox.bowtraining.utilities.Utilities;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -15,7 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-import java.util.concurrent.ThreadLocalRandom;
+import static fr.whitefox.bowtraining.utilities.Utilities.armorStandUUID;
 
 public class EntityDamage implements Listener {
 
@@ -33,7 +32,7 @@ public class EntityDamage implements Listener {
             }
         }
 
-        if ((event.getEntity().getUniqueId() != StartGame.ArmorStandUUID) || (!(event.getDamager() instanceof Arrow)))
+        if (!armorStandUUID.contains(event.getEntity().getUniqueId()) || (!(event.getDamager() instanceof Arrow)))
             return;
         Arrow arrow = (Arrow) event.getDamager();
         if (arrow.getShooter() instanceof Player) {

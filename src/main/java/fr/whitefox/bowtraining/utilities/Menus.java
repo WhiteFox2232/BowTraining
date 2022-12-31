@@ -19,10 +19,12 @@ public class Menus {
         ItemStack daylight = getItemStack(Material.DAYLIGHT_DETECTOR, "§6§lChanger l'heure de la partie", 1);
         ItemStack autoStart = getItemStack(Material.REDSTONE_TORCH, "§6§lLancer automatiquement la partie", 1);
         ItemStack configArea = getItemStack(Material.WOODEN_SHOVEL, "§6§lConfigurer la zone d'apparition de la cible", 1);
-        inv.setItem(10, clock);
-        inv.setItem(12, daylight);
-        inv.setItem(14, autoStart);
-        inv.setItem(16, configArea);
+        ItemStack targets = getItemStack(Material.TARGET, "§6§lConfigurer le nombre de cibles", 1);
+        inv.setItem(9, clock);
+        inv.setItem(11, daylight);
+        inv.setItem(13, autoStart);
+        inv.setItem(15, configArea);
+        inv.setItem(17, targets);
 
         setBackButton(inv, "§c§lFermer");
         setBackground(inv, Material.WHITE_STAINED_GLASS_PANE, " ");
@@ -71,6 +73,26 @@ public class Menus {
         inv.setItem(13, clock2m);
         inv.setItem(14, clock3m);
         inv.setItem(15, clock5m);
+
+        setBackButton(inv, "§c§lRetourner au Menu Principal");
+        setBackground(inv, Material.WHITE_STAINED_GLASS_PANE, " ");
+
+        return inv;
+    }
+
+    // Timer config menu
+    public static Inventory TargetsConfigMenu() {
+        Inventory inv = Bukkit.createInventory(null, 27, "§6§lConfiguration ➤ §c§lTargets");
+        ItemStack target1 = getItemStack(Material.TARGET, "§a§l1 cible", 1);
+        ItemStack target2 = getItemStack(Material.TARGET, "§a§l2 cible", 2);
+        ItemStack target3 = getItemStack(Material.TARGET, "§a§l3 cible", 3);
+        ItemStack target4 = getItemStack(Material.TARGET, "§a§l4 cible", 4);
+        ItemStack target5 = getItemStack(Material.TARGET, "§a§l5 cible", 5);
+        inv.setItem(11, target1);
+        inv.setItem(12, target2);
+        inv.setItem(13, target3);
+        inv.setItem(14, target4);
+        inv.setItem(15, target5);
 
         setBackButton(inv, "§c§lRetourner au Menu Principal");
         setBackground(inv, Material.WHITE_STAINED_GLASS_PANE, " ");

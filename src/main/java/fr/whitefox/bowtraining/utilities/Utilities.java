@@ -14,24 +14,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-
-import static fr.whitefox.bowtraining.tasks.StartGame.ArmorStandUUID;
+import java.util.UUID;
 
 public class Utilities {
 
     private static final Main main = Main.getInstance();
-    public static ArrayList<Location> coordinates = new ArrayList<>();
     public static Location spawnLocation = new Location(Bukkit.getWorld("world"), 0.5f, 0, 0.5f, 90, 0);
     public static HashMap<Player, Integer> targetsReached = new HashMap<>();
     public static HashMap<Player, Integer> arrowsUsed = new HashMap<>();
-
-    public static void removeArmorStand() {
-        for (Entity entity : Bukkit.getWorld("world").getEntities()) {
-            if (entity.getUniqueId().equals(ArmorStandUUID)) {
-                entity.remove();
-            }
-        }
-    }
+    public static ArrayList<UUID> armorStandUUID = new ArrayList<>();
 
     public static void AllPlayersGoToSpawn() {
         for (Player players : Bukkit.getOnlinePlayers()) {
@@ -75,15 +66,25 @@ public class Utilities {
     }
 
     public static void spawnArmorStand() {
-        ArmorStand armorStand = (ArmorStand) Bukkit.getWorld("world").spawnEntity(getNextTargetPosition(), EntityType.ARMOR_STAND);
-        ArmorStandUUID = armorStand.getUniqueId();
+        for (int i = 0; i < main.getConfig().getInt("targets"); i++) {
+            ArmorStand armorStand = (ArmorStand) Bukkit.getWorld("world").spawnEntity(getNextTargetPosition(), EntityType.ARMOR_STAND);
+            armorStandUUID.add(armorStand.getUniqueId());
+            EntityEquipment equipment = armorStand.getEquipment();
+            ItemStack helmet = new ItemStack(Material.TARGET, 1);
+            equipment.setHelmet(helmet);
+            armorStand.setCustomName("§a§lBob");
+            armorStand.setInvisible(true);
+            armorStand.setGravity(false);
+        }
+    }
 
-        EntityEquipment equipment = armorStand.getEquipment();
-        ItemStack helmet = new ItemStack(Material.TARGET, 1);
-        equipment.setHelmet(helmet);
-        armorStand.setCustomName("§a§lBob");
-        armorStand.setInvisible(true);
-        armorStand.setGravity(false);
+    public static void removeArmorStand() {
+        for (UUID uuid : armorStandUUID) {
+            Entity entity = Bukkit.getServer().getEntity(uuid);
+            if (entity != null) {
+                entity.remove();
+            }
+        }
     }
 
     public static Location getNextTargetPosition() {
