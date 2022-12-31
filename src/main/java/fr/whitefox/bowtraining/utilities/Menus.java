@@ -18,9 +18,11 @@ public class Menus {
         ItemStack clock = getItemStack(Material.CLOCK, "§6§lConfigurer le temps de jeu", 1);
         ItemStack daylight = getItemStack(Material.DAYLIGHT_DETECTOR, "§6§lChanger l'heure de la partie", 1);
         ItemStack autoStart = getItemStack(Material.REDSTONE_TORCH, "§6§lLancer automatiquement la partie", 1);
-        inv.setItem(11, clock);
-        inv.setItem(13, daylight);
-        inv.setItem(15, autoStart);
+        ItemStack configArea = getItemStack(Material.WOODEN_SHOVEL, "§6§lConfigurer la zone d'apparition de la cible", 1);
+        inv.setItem(10, clock);
+        inv.setItem(12, daylight);
+        inv.setItem(14, autoStart);
+        inv.setItem(16, configArea);
 
         setBackButton(inv, "§c§lFermer");
         setBackground(inv, Material.WHITE_STAINED_GLASS_PANE, " ");

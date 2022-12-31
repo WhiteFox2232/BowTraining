@@ -1,6 +1,6 @@
 package fr.whitefox.bowtraining.events;
 
-import fr.whitefox.bowtraining.GState;
+import fr.whitefox.bowtraining.GameState;
 import fr.whitefox.bowtraining.Main;
 import fr.whitefox.bowtraining.tasks.StartGame;
 import fr.whitefox.bowtraining.utilities.Inventories;
@@ -24,7 +24,7 @@ public class JoinQuit implements Listener {
         Player player = event.getPlayer();
         player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, Integer.MAX_VALUE, 1, false, false));
 
-        if (main.isState(GState.PLAYING)) {
+        if (main.isGameState(GameState.PLAYING)) {
             player.getInventory().clear();
             player.sendTitle("§cLa partie a déjà commencée !", null, 0, 60, 0);
             Utilities.playErrorSound(player);
@@ -37,8 +37,8 @@ public class JoinQuit implements Listener {
             return;
         }
 
-        if (main.isState(GState.WAITING)) {
-            if(main.getConfig().getBoolean("auto-start") && Bukkit.getOnlinePlayers().size() == Bukkit.getMaxPlayers()){
+        if (main.isGameState(GameState.WAITING)) {
+            if(main.getConfig().getBoolean("auto-start") && Bukkit.getOnlinePlayers().size() == Bukkit.getMaxPlayers() && Main.areaIsOkay()){
                 StartGame.run(player);
             }
 

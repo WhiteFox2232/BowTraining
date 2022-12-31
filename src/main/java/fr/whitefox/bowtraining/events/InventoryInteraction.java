@@ -1,6 +1,8 @@
 package fr.whitefox.bowtraining.events;
 
+import fr.whitefox.bowtraining.ConfigState;
 import fr.whitefox.bowtraining.Main;
+import fr.whitefox.bowtraining.utilities.Inventories;
 import fr.whitefox.bowtraining.utilities.Menus;
 import fr.whitefox.bowtraining.utilities.Utilities;
 import org.bukkit.Bukkit;
@@ -18,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 public class InventoryInteraction implements Listener {
 
     private final FileConfiguration config = Main.getInstance().getConfig();
+    private final Main main = Main.getInstance();
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
@@ -40,6 +43,19 @@ public class InventoryInteraction implements Listener {
 
                     case REDSTONE_TORCH:
                         player.openInventory(Menus.AutoStartMenu());
+                        break;
+
+                    case WOODEN_SHOVEL:
+                        player.closeInventory();
+                        player.getInventory().clear();
+                        Inventories.setConfigAreaInventory(player);
+                        player.getInventory().setHeldItemSlot(4);
+                        player.sendTitle("§d§lConfigurez la zone", null, 0, 40, 0);
+                        player.sendMessage("§3[§bBowTraining§3] §6Mode de configuration de zone");
+                        player.sendMessage("   -> §aFaites un click gauche pour définir le point A");
+                        player.sendMessage("   -> §aFaites un click droite pour définir le point B");
+                        player.setGameMode(GameMode.CREATIVE);
+                        main.setConfigState(ConfigState.AREA);
                         break;
 
                     case BARRIER:

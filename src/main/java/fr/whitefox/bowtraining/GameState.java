@@ -1,5 +1,5 @@
 package fr.whitefox.bowtraining;
 
-public enum GState {
+public enum GameState {
     WAITING, PREPARING, STARTING, PLAYING;
 }

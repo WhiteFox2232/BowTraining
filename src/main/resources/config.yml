@@ -8,3 +8,7 @@
 
 timer: 60
 auto-start: false
+
+area:
+  point1:
+  point2:

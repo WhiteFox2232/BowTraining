@@ -1,24 +1,33 @@
 package fr.whitefox.bowtraining;
 
 import fr.whitefox.bowtraining.events.*;
+import fr.whitefox.bowtraining.utilities.Inventories;
 import fr.whitefox.bowtraining.utilities.Utilities;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
     private static Main instance;
-    private GState state;
+    private GameState game_state;
+    private ConfigState config_state;
 
     public static Main getInstance() {
         return instance;
     }
 
+    public static boolean areaIsOkay() {
+        return (Main.getInstance().getConfig().getString("area.point1") != null && Main.getInstance().getConfig().getString("area.point2") != null);
+    }
+
     @Override
     public void onEnable() {
-        setState(GState.WAITING);
         instance = this;
+        setGameState(GameState.WAITING);
+        setConfigState(ConfigState.NONE);
         saveDefaultConfig();
-        Utilities.initCoordinates();
+        initPlayers();
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new EntityDamage(), this);
@@ -35,11 +44,29 @@ public final class Main extends JavaPlugin {
         Utilities.removeArmorStand();
     }
 
-    public void setState(GState state) {
-        this.state = state;
+    public void setGameState(GameState game_state) {
+        this.game_state = game_state;
     }
 
-    public boolean isState(GState state) {
-        return this.state == state;
+    public boolean isGameState(GameState game_state) {
+        return this.game_state == game_state;
+    }
+
+    public void setConfigState(ConfigState config_state) {
+        this.config_state = config_state;
+    }
+
+    public boolean isConfigState(ConfigState config_state) {
+        return this.config_state == config_state;
+    }
+
+    public void initPlayers() {
+        for(Player players: Bukkit.getOnlinePlayers()) {
+            players.getInventory().clear();
+            Utilities.AllPlayersGoToSpawn();
+            if (players.hasPermission("BT.admin")) {
+                Inventories.setAdminInventory(players);
+            }
+        }
     }
 }

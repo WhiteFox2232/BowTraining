@@ -1,12 +1,13 @@
 package fr.whitefox.bowtraining.tasks;
 
-import fr.whitefox.bowtraining.GState;
+import fr.whitefox.bowtraining.GameState;
 import fr.whitefox.bowtraining.Main;
 import fr.whitefox.bowtraining.utilities.Inventories;
 import fr.whitefox.bowtraining.utilities.Utilities;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -21,7 +22,7 @@ public class StartGame {
     private static final Main main = Main.getInstance();
 
     public static void run(Player player) {
-        main.setState(GState.PREPARING);
+        main.setGameState(GameState.PREPARING);
         Utilities.removeArmorStand();
 
         new BukkitRunnable() {
@@ -47,8 +48,9 @@ public class StartGame {
                         if (players.hasPermission("BT.admin")) {
                             Inventories.setAdminInventory(players);
                         }
+                        players.setGameMode(GameMode.ADVENTURE);
                     }
-                    main.setState(GState.PLAYING);
+                    main.setGameState(GameState.PLAYING);
                     task = new GameCycle().runTaskTimer(main, 0, 20);
                     cancel();
                 }
