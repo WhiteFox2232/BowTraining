@@ -46,7 +46,7 @@ public class Menus {
     public static Inventory AutoStartMenu() {
         Inventory inv = Bukkit.createInventory(null, 27, "§6§lConfiguration ➤ §c§lAutoStart");
         ItemStack yes = getItemStack(Material.LIME_STAINED_GLASS_PANE, "§a§lActiver", 1);
-        ItemStack no = getItemStack(Material.RED_STAINED_GLASS_PANE, "§a§lDésactiver", 1);
+        ItemStack no = getItemStack(Material.RED_STAINED_GLASS_PANE, "§c§lDésactiver", 1);
         inv.setItem(12, yes);
         inv.setItem(14, no);
 
