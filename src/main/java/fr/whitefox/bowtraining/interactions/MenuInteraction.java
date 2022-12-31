@@ -4,7 +4,6 @@ import fr.whitefox.bowtraining.ConfigState;
 import fr.whitefox.bowtraining.Main;
 import fr.whitefox.bowtraining.utilities.Inventories;
 import fr.whitefox.bowtraining.utilities.Menus;
-import fr.whitefox.bowtraining.utilities.Utilities;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -12,9 +11,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 
 public class MenuInteraction implements Listener {
@@ -66,7 +64,6 @@ public class MenuInteraction implements Listener {
                         break;
                 }
 
-                event.setCancelled(true);
                 break;
 
             // Timer configuration Menu
@@ -105,7 +102,6 @@ public class MenuInteraction implements Listener {
                         break;
                 }
 
-                event.setCancelled(true);
                 break;
 
             // Timer configuration Menu
@@ -129,7 +125,7 @@ public class MenuInteraction implements Listener {
                         break;
                 }
 
-            // Auto-start configuration Menu
+                // Auto-start configuration Menu
             case "§6§lConfiguration ➤ §c§lAutoStart":
                 switch (current.getType()) {
                     case LIME_STAINED_GLASS_PANE:
@@ -150,7 +146,6 @@ public class MenuInteraction implements Listener {
                         break;
                 }
 
-                event.setCancelled(true);
                 break;
 
             // End Menu
@@ -164,8 +159,7 @@ public class MenuInteraction implements Listener {
                 break;
         }
 
-        // Current case (PLayers inventory, etc...)
-        if (event.getWhoClicked().getGameMode() != GameMode.CREATIVE) {
+        if(!event.getInventory().getType().equals(InventoryType.PLAYER) && event.getWhoClicked().getGameMode() != GameMode.CREATIVE) {
             event.setCancelled(true);
         }
     }
