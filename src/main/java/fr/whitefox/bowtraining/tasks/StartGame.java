@@ -2,6 +2,7 @@ package fr.whitefox.bowtraining.tasks;
 
 import fr.whitefox.bowtraining.GState;
 import fr.whitefox.bowtraining.Main;
+import fr.whitefox.bowtraining.utilities.Inventories;
 import fr.whitefox.bowtraining.utilities.Utilities;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -17,7 +18,7 @@ public class StartGame {
 
     public static UUID ArmorStandUUID = null;
     public static BukkitTask task = null;
-    private static Main main = Main.getInstance();
+    private static final Main main = Main.getInstance();
 
     public static void run(Player player) {
         main.setState(GState.PREPARING);
@@ -42,9 +43,9 @@ public class StartGame {
                     for (Player players : Bukkit.getOnlinePlayers()) {
                         players.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§c§lTirez sur Bob !"));
                         players.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 2.0f, 1.0f);
-                        Utilities.setGameInventory(players);
+                        Inventories.setGameInventory(players);
                         if (players.hasPermission("BT.admin")) {
-                            Utilities.setAdminInventory(players);
+                            Inventories.setAdminInventory(players);
                         }
                     }
                     main.setState(GState.PLAYING);
