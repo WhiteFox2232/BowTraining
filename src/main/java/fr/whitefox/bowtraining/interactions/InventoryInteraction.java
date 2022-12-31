@@ -1,4 +1,4 @@
-package fr.whitefox.bowtraining.events;
+package fr.whitefox.bowtraining.interactions;
 
 import fr.whitefox.bowtraining.ConfigState;
 import fr.whitefox.bowtraining.GameState;
@@ -15,7 +15,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class PlayerInteract implements Listener {
+public class InventoryInteraction implements Listener {
 
     private final Main main = Main.getInstance();
     private String point1 = null;

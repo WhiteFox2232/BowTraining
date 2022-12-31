@@ -1,4 +1,4 @@
-package fr.whitefox.bowtraining.events;
+package fr.whitefox.bowtraining.interactions;
 
 import fr.whitefox.bowtraining.ConfigState;
 import fr.whitefox.bowtraining.Main;
@@ -17,7 +17,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class InventoryInteraction implements Listener {
+public class MenuInteraction implements Listener {
 
     private final FileConfiguration config = Main.getInstance().getConfig();
     private final Main main = Main.getInstance();
@@ -167,25 +167,6 @@ public class InventoryInteraction implements Listener {
         // Current case (PLayers inventory, etc...)
         if (event.getWhoClicked().getGameMode() != GameMode.CREATIVE) {
             event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onDropItem(PlayerDropItemEvent event) {
-        if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
-            event.getPlayer().sendMessage("§3[§bBowTraining§3] §cVous ne pouvez rien jeter ici !");
-            Utilities.playErrorSound(event.getPlayer());
-            event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onPlayerPickupItem(EntityPickupItemEvent event) {
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
-            if (player.getGameMode() != GameMode.CREATIVE) {
-                event.setCancelled(true);
-            }
         }
     }
 }

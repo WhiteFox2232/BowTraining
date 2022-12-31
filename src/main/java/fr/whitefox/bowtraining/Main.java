@@ -1,6 +1,8 @@
 package fr.whitefox.bowtraining;
 
 import fr.whitefox.bowtraining.events.*;
+import fr.whitefox.bowtraining.interactions.MenuInteraction;
+import fr.whitefox.bowtraining.interactions.InventoryInteraction;
 import fr.whitefox.bowtraining.utilities.Inventories;
 import fr.whitefox.bowtraining.utilities.Utilities;
 import org.bukkit.Bukkit;
@@ -31,11 +33,12 @@ public final class Main extends JavaPlugin {
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new EntityDamage(), this);
+        pm.registerEvents(new MenuInteraction(), this);
         pm.registerEvents(new InventoryInteraction(), this);
         pm.registerEvents(new ProjectileInteraction(), this);
         pm.registerEvents(new JoinQuit(), this);
-        pm.registerEvents(new PlayerInteract(), this);
         pm.registerEvents(new MoveEvent(), this);
+        pm.registerEvents(new PlayerInteraction(), this);
     }
 
     @Override
