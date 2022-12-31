@@ -4,3 +4,4 @@ main: fr.whitefox.bowtraining.Main
 api-version: 1.19
 authors: [ WhiteFox2232 ]
 website: https://github.com/whitefox2232
+description: BowTraining is a Minecraft plugin created with the Spigot API for Minecraft version 1.19.2. This plugin is based on an archery game. He's fully customizable.
