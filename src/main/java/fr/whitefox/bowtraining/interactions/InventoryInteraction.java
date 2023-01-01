@@ -108,5 +108,7 @@ public class InventoryInteraction implements Listener {
                 player.openInventory(Menus.ConfigMenu());
                 break;
         }
+
+        event.setCancelled(true);
     }
 }
