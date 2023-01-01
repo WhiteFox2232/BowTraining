@@ -57,7 +57,9 @@ public class Toolbox {
             @Override
             public void run() {
                 for (Player people : Bukkit.getServer().getOnlinePlayers()) {
-                    people.openInventory(Menus.EndMenu(people));
+                    if(!people.getGameMode().equals(GameMode.SPECTATOR)) {
+                        people.openInventory(Menus.EndMenu(people));
+                    }
                 }
                 targetsReached.clear();
                 arrowsUsed.clear();
