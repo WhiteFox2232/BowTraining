@@ -6,7 +6,7 @@ import fr.whitefox.bowtraining.Main;
 import fr.whitefox.bowtraining.tasks.StartGame;
 import fr.whitefox.bowtraining.utilities.Inventories;
 import fr.whitefox.bowtraining.utilities.Menus;
-import fr.whitefox.bowtraining.utilities.Utilities;
+import fr.whitefox.bowtraining.utilities.Toolbox;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -87,7 +87,7 @@ public class InventoryInteraction implements Listener {
                     StartGame.run(player);
                 } else {
                     player.sendMessage("§3[§bBowTraining§3] §cVous avez déjà lancé une partie !");
-                    Utilities.playErrorSound(player);
+                    Toolbox.playErrorSound(player);
                 }
                 break;
 
@@ -96,10 +96,10 @@ public class InventoryInteraction implements Listener {
                 // On arrête la partie
                 if (main.isGameState(GameState.PLAYING)) {
                     StartGame.task.cancel();
-                    Utilities.endGame();
+                    Toolbox.endGame();
                 } else {
                     player.sendMessage("§3[§bBowTraining§3] §cVous ne pouvez pas faire ça, lancez d'abord une partie !");
-                    Utilities.playErrorSound(player);
+                    Toolbox.playErrorSound(player);
                 }
                 break;
 

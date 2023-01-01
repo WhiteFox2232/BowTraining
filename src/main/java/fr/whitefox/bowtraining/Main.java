@@ -4,7 +4,7 @@ import fr.whitefox.bowtraining.events.*;
 import fr.whitefox.bowtraining.interactions.MenuInteraction;
 import fr.whitefox.bowtraining.interactions.InventoryInteraction;
 import fr.whitefox.bowtraining.utilities.Inventories;
-import fr.whitefox.bowtraining.utilities.Utilities;
+import fr.whitefox.bowtraining.utilities.Toolbox;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -44,7 +44,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         saveConfig();
-        Utilities.removeArmorStand();
+        Toolbox.removeArmorStand();
     }
 
     public void setGameState(GameState game_state) {
@@ -66,7 +66,7 @@ public final class Main extends JavaPlugin {
     public void initPlayers() {
         for(Player players: Bukkit.getOnlinePlayers()) {
             players.getInventory().clear();
-            Utilities.AllPlayersGoToSpawn();
+            Toolbox.AllPlayersGoToSpawn();
             if (players.hasPermission("BT.admin")) {
                 Inventories.setAdminInventory(players);
             }

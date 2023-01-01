@@ -3,7 +3,7 @@ package fr.whitefox.bowtraining.tasks;
 import fr.whitefox.bowtraining.GameState;
 import fr.whitefox.bowtraining.Main;
 import fr.whitefox.bowtraining.utilities.Inventories;
-import fr.whitefox.bowtraining.utilities.Utilities;
+import fr.whitefox.bowtraining.utilities.Toolbox;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -20,7 +20,7 @@ public class StartGame {
 
     public static void run(Player player) {
         main.setGameState(GameState.PREPARING);
-        Utilities.removeArmorStand();
+        Toolbox.removeArmorStand();
 
         new BukkitRunnable() {
             private int timer = 5;
@@ -36,8 +36,8 @@ public class StartGame {
 
                 // If timer is finished, start game
                 if (timer == 0) {
-                    Utilities.spawnArmorStand();
-                    Utilities.AllPlayersGoToSpawn();
+                    Toolbox.spawnArmorStand();
+                    Toolbox.AllPlayersGoToSpawn();
                     for (Player players : Bukkit.getOnlinePlayers()) {
                         players.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§c§lTirez sur Bob !"));
                         players.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 2.0f, 1.0f);

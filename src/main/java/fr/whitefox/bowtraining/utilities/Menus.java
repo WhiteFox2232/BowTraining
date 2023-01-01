@@ -104,8 +104,8 @@ public class Menus {
     public static Inventory EndMenu(Player player) {
         Inventory inv = Bukkit.createInventory(null, 27, "§6§lMenu de fin de jeu");
         ItemStack clock = getItemStack(Material.CLOCK, "§6§l" + main.getConfig().get("timer") + " secondes", 1);
-        ItemStack bow = getItemStack(Material.BOW, "§6§l" + Utilities.targetsReached.get(player) + " cibles atteintes", 1);
-        ItemStack arrow = getItemStack(Material.ARROW, "§6§l" + Utilities.arrowsUsed.get(player) + " flèches tirées", 1);
+        ItemStack bow = getItemStack(Material.BOW, "§6§l" + Toolbox.targetsReached.get(player) + " cibles atteintes", 1);
+        ItemStack arrow = getItemStack(Material.ARROW, "§6§l" + Toolbox.arrowsUsed.get(player) + " flèches tirées", 1);
         ItemStack targetsStats = getItemStack(Material.FLETCHING_TABLE, "§6§l" + getRatioTargets(player) + " flèches par secondes", 1);
         ItemStack arrowStats = getItemStack(Material.FLETCHING_TABLE, "§6§l" + getRatioArrows(player) + "% de réussite", 1);
         inv.setItem(4, bow);
@@ -144,7 +144,7 @@ public class Menus {
 
     public static float getRatioTargets(Player player) {
         float ratioTargets;
-        Integer targetsReached = Utilities.targetsReached.get(player);
+        Integer targetsReached = Toolbox.targetsReached.get(player);
         if (targetsReached != null) {
             int timer = main.getConfig().getInt("timer");
             if (timer != 0) {
@@ -160,8 +160,8 @@ public class Menus {
 
     public static float getRatioArrows(Player player) {
         float ratioArrows;
-        Integer targetsReached = Utilities.targetsReached.get(player);
-        Integer arrowsUsed = Utilities.arrowsUsed.get(player);
+        Integer targetsReached = Toolbox.targetsReached.get(player);
+        Integer arrowsUsed = Toolbox.arrowsUsed.get(player);
         if (targetsReached != null && arrowsUsed != null) {
             if (arrowsUsed != 0) {
                 ratioArrows = 100 * (float) targetsReached / arrowsUsed;

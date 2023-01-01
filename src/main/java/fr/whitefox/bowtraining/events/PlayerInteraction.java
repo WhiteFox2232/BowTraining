@@ -1,6 +1,6 @@
 package fr.whitefox.bowtraining.events;
 
-import fr.whitefox.bowtraining.utilities.Utilities;
+import fr.whitefox.bowtraining.utilities.Toolbox;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,7 +13,7 @@ public class PlayerInteraction implements Listener {
     public void onDropItem(PlayerDropItemEvent event) {
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE) {
             event.getPlayer().sendMessage("§3[§bBowTraining§3] §cVous ne pouvez rien jeter ici !");
-            Utilities.playErrorSound(event.getPlayer());
+            Toolbox.playErrorSound(event.getPlayer());
             event.setCancelled(true);
         }
     }

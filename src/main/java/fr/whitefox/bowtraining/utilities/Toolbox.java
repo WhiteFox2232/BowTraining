@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
 
-public class    Utilities {
+public class Toolbox {
 
     private static final Main main = Main.getInstance();
     public static Location spawnLocation = Bukkit.getWorld("world").getSpawnLocation();
@@ -39,7 +39,7 @@ public class    Utilities {
     }
 
     public static void endGame() {
-        Utilities.removeArmorStand();
+        Toolbox.removeArmorStand();
         main.setGameState(GameState.WAITING);
         Bukkit.broadcastMessage("§3[§bBowTraining§3] §a§lPartie terminée !");
         for (Player people : Bukkit.getServer().getOnlinePlayers()) {

@@ -1,7 +1,7 @@
 package fr.whitefox.bowtraining.tasks;
 
 import fr.whitefox.bowtraining.Main;
-import fr.whitefox.bowtraining.utilities.Utilities;
+import fr.whitefox.bowtraining.utilities.Toolbox;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -21,7 +21,7 @@ public class GameCycle extends BukkitRunnable {
         }
 
         if (i == 0) {
-            Utilities.endGame();
+            Toolbox.endGame();
             cancel();
             return;
         }

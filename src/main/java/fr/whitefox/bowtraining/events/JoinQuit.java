@@ -4,7 +4,7 @@ import fr.whitefox.bowtraining.GameState;
 import fr.whitefox.bowtraining.Main;
 import fr.whitefox.bowtraining.tasks.StartGame;
 import fr.whitefox.bowtraining.utilities.Inventories;
-import fr.whitefox.bowtraining.utilities.Utilities;
+import fr.whitefox.bowtraining.utilities.Toolbox;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -27,9 +27,9 @@ public class JoinQuit implements Listener {
         if (main.isGameState(GameState.PLAYING)) {
             player.getInventory().clear();
             player.sendTitle("§cLa partie a déjà commencée !", null, 0, 60, 0);
-            Utilities.playErrorSound(player);
+            Toolbox.playErrorSound(player);
             player.setGameMode(GameMode.SPECTATOR);
-            Utilities.playerGoToSpawn(player);
+            Toolbox.playerGoToSpawn(player);
             if (player.hasPermission("BT.admin")) {
                 Inventories.setAdminInventory(player);
             }
@@ -46,7 +46,7 @@ public class JoinQuit implements Listener {
         } else {
             event.setJoinMessage(null);
         }
-        Utilities.playErrorSound(player);
+        Toolbox.playErrorSound(player);
         player.getInventory().clear();
         player.setFoodLevel(20);
         player.setHealth(20);
@@ -58,8 +58,8 @@ public class JoinQuit implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
-        Utilities.arrowsUsed.remove(event.getPlayer());
-        Utilities.targetsReached.remove(event.getPlayer());
+        Toolbox.arrowsUsed.remove(event.getPlayer());
+        Toolbox.targetsReached.remove(event.getPlayer());
         event.setQuitMessage(null);
     }
 }

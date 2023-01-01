@@ -1,6 +1,6 @@
 package fr.whitefox.bowtraining.events;
 
-import fr.whitefox.bowtraining.utilities.Utilities;
+import fr.whitefox.bowtraining.utilities.Toolbox;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.GameMode;
@@ -14,7 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-import static fr.whitefox.bowtraining.utilities.Utilities.armorStandUUID;
+import static fr.whitefox.bowtraining.utilities.Toolbox.armorStandUUID;
 
 public class EntityDamage implements Listener {
 
@@ -42,14 +42,14 @@ public class EntityDamage implements Listener {
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.5f, 1.0f);
 
             // Moove target
-            event.getEntity().teleport(Utilities.getNextTargetPosition());
+            event.getEntity().teleport(Toolbox.getNextTargetPosition());
 
-            if (Utilities.targetsReached.containsKey(player)) {
-                Utilities.targetsReached.put(player, Utilities.targetsReached.get(player) + 1);
+            if (Toolbox.targetsReached.containsKey(player)) {
+                Toolbox.targetsReached.put(player, Toolbox.targetsReached.get(player) + 1);
             } else {
-                Utilities.targetsReached.put(player, 1);
+                Toolbox.targetsReached.put(player, 1);
             }
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§a§lCibles atteintes : " + Utilities.targetsReached.get(player)));
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§a§lCibles atteintes : " + Toolbox.targetsReached.get(player)));
         }
     }
 }

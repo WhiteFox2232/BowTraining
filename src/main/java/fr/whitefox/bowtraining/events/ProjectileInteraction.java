@@ -1,7 +1,7 @@
 package fr.whitefox.bowtraining.events;
 
 import fr.whitefox.bowtraining.Main;
-import fr.whitefox.bowtraining.utilities.Utilities;
+import fr.whitefox.bowtraining.utilities.Toolbox;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,10 +24,10 @@ public class ProjectileInteraction implements Listener {
 
             if (arrow.getShooter() instanceof Player) {
                 Player player = (Player) arrow.getShooter();
-                if (Utilities.arrowsUsed.containsKey(player)) {
-                    Utilities.arrowsUsed.put(player, Utilities.arrowsUsed.get(player) + 1);
+                if (Toolbox.arrowsUsed.containsKey(player)) {
+                    Toolbox.arrowsUsed.put(player, Toolbox.arrowsUsed.get(player) + 1);
                 } else {
-                    Utilities.arrowsUsed.put(player, 1);
+                    Toolbox.arrowsUsed.put(player, 1);
                 }
             }
         }
