@@ -58,6 +58,8 @@ public class JoinQuit implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
+        Utilities.arrowsUsed.remove(event.getPlayer());
+        Utilities.targetsReached.remove(event.getPlayer());
         event.setQuitMessage(null);
     }
 }
