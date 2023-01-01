@@ -16,10 +16,10 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
 
-public class Utilities {
+public class    Utilities {
 
     private static final Main main = Main.getInstance();
-    public static Location spawnLocation = new Location(Bukkit.getWorld("world"), 0.5f, 0, 0.5f, 90, 0);
+    public static Location spawnLocation = Bukkit.getWorld("world").getSpawnLocation();
     public static HashMap<Player, Integer> targetsReached = new HashMap<>();
     public static HashMap<Player, Integer> arrowsUsed = new HashMap<>();
     public static ArrayList<UUID> armorStandUUID = new ArrayList<>();
