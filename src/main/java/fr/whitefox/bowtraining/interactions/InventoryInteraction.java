@@ -8,6 +8,7 @@ import fr.whitefox.bowtraining.utilities.Inventories;
 import fr.whitefox.bowtraining.utilities.Menus;
 import fr.whitefox.bowtraining.utilities.Toolbox;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -37,9 +38,11 @@ public class InventoryInteraction implements Listener {
                     if (action.equals(Action.LEFT_CLICK_AIR) || action.equals(Action.LEFT_CLICK_BLOCK)) {
                         point1 = (int) location.getX() + "," + (int) location.getY() + "," + (int) location.getZ();
                         player.sendMessage("§3[§bBowTraining§3] §dPoint A configuré aux coordonnées §6§l" + point1 + "§r§d.");
+                        player.sendTitle("§d§lPoint A", null, 0, 20, 0);
                     } else if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
                         point2 = (int) location.getX() + "," + (int) location.getY() + "," + (int) location.getZ();
                         player.sendMessage("§3[§bBowTraining§3] §dPoint B configuré aux coordonnées §6§l" + point2 + "§r§d.");
+                        player.sendTitle("§d§lPoint B", null, 0, 20, 0);
                     }
                     break;
 
@@ -109,6 +112,8 @@ public class InventoryInteraction implements Listener {
                 break;
         }
 
-        event.setCancelled(true);
+        if(!item.getType().equals(Material.BOW)) {
+            event.setCancelled(true);
+        }
     }
 }
